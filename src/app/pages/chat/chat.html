@@ -4,7 +4,7 @@
     <div class="brand">
       <div class="brand-avatar">✦</div>
       <div class="brand-text">
-        <h1>AI Assistant</h1>
+        <h1>AI Assistant BUDY</h1>
         <span class="status">
           <span class="status-dot"></span>
           Online
@@ -12,45 +12,45 @@
       </div>
     </div>
     @if (messages().length > 0) {
-      <button class="clear-btn" type="button" (click)="clearChat()" title="Clear conversation">
-        Clear
-      </button>
+    <button class="clear-btn" type="button" (click)="clearChat()" title="Clear conversation">
+      Clear
+    </button>
     }
   </header>
 
   <!-- Messages -->
   <div class="messages">
     @if (messages().length === 0 && !isTyping()) {
-      <div class="empty-state">
-        <div class="empty-icon">💬</div>
-        <h2>Start the conversation</h2>
-        <p>Ask anything — type a message below and hit send.</p>
-      </div>
+    <div class="empty-state">
+      <div class="empty-icon">💬</div>
+      <h2>Start the conversation</h2>
+      <p>Ask anything — type a message below and hit send.</p>
+    </div>
     }
 
     @for (msg of messages(); track $index) {
-      <div class="message-row" [class.from-user]="msg.role === 'user'">
-        <div class="avatar" [class.user-avatar]="msg.role === 'user'">
-          {{ msg.role === 'user' ? '🙂' : '✦' }}
-        </div>
-        <div class="bubble">
-          <p class="bubble-text">{{ msg.text }}</p>
-          <span class="bubble-time">
-            {{ msg.time | date: 'shortTime' }}
-          </span>
-        </div>
+    <div class="message-row" [class.from-user]="msg.role === 'user'">
+      <div class="avatar" [class.user-avatar]="msg.role === 'user'">
+        {{ msg.role === 'user' ? '🙂' : '✦' }}
       </div>
+      <div class="bubble">
+        <p class="bubble-text">{{ msg.text }}</p>
+        <span class="bubble-time">
+          {{ msg.time | date: 'shortTime' }}
+        </span>
+      </div>
+    </div>
     }
 
     @if (isTyping()) {
-      <div class="message-row">
-        <div class="avatar">✦</div>
-        <div class="bubble typing">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+    <div class="message-row">
+      <div class="avatar">✦</div>
+      <div class="bubble typing">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
+    </div>
     }
 
     <div #scrollAnchor></div>
@@ -58,20 +58,9 @@
 
   <!-- Composer -->
   <form class="composer" (ngSubmit)="sendMessage()">
-    <textarea
-      class="composer-input"
-      [(ngModel)]="userMessage"
-      name="userMessage"
-      rows="1"
-      placeholder="Type your message…"
-      (keydown)="onKeydown($event)"
-    ></textarea>
-    <button
-      class="send-btn"
-      type="submit"
-      [disabled]="!userMessage.trim() || isTyping()"
-      title="Send message"
-    >
+    <textarea class="composer-input" [(ngModel)]="userMessage" name="userMessage" rows="1"
+      placeholder="Type your message…" (keydown)="onKeydown($event)"></textarea>
+    <button class="send-btn" type="submit" [disabled]="!userMessage.trim() || isTyping()" title="Send message">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
         <path d="M3.4 20.4 21 12 3.4 3.6 3 10l12 2-12 2z" />
       </svg>
